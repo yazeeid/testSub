@@ -1,0 +1,23 @@
+name: Update Submodule
+
+on:
+  schedule:
+    - cron: '5 * * * *' 
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true # Ensures submodules are checked out
+
+      - name: Update Submodule
+        run: |
+          git submodule foreach 'git fetch origin main' # Adjust branch name if needed
+          git submodule foreach 'git merge origin/main --allow-unrelated-histories || echo "No merge needed"'
+          git add .
+          git commit -m "Update submodule to latest commit from main repo" || echo "No changes to commit"
+          git push || echo "Nothing to push"
