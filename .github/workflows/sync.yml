@@ -1,19 +1,17 @@
-name: Update Submodule
+name: master
 
 on:
+  push:
+    branch:
+      - master
   schedule:
     - cron: '* * * * *' 
 
 jobs:
-  update-submodule:
+  bulid:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          submodules: true # Ensures submodules are checked out
-
-      - name: Update Submodule
+        uses: actions/checkout@v1 
         run: |
           echo "Running"
