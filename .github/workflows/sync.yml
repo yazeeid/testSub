@@ -11,7 +11,7 @@ jobs:
   bulid:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
       - uses: actions/checkout@v1 
+      - name: Running
         run: |
           echo "Running"
